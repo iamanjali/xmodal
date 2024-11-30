@@ -72,8 +72,11 @@ function Home() {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
                   onChange={handleChange}
                   required
+                  pattern="^[^@]+@[^@]+\.[^@]+$"
+  title="Please include an '@' in the email address."
                 />
               </div>
               <div>
