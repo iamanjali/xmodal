@@ -60,7 +60,7 @@ function Home() {
                 <label htmlFor="name">Name:</label>
                 <input
                   type="text"
-                  id="name"
+                  id="username"
                   name="name"
                   onChange={handleChange}
                   required
@@ -76,7 +76,7 @@ function Home() {
                   onChange={handleChange}
                   required
                   pattern="^[^@]+@[^@]+\.[^@]+$"
-  title="Please include an '@' in the email address."
+                  title="Please include an '@' in the email address."
                 />
               </div>
               <div>
@@ -89,6 +89,30 @@ function Home() {
                   required
                 />
               </div>
+
+              <div style={{ marginBottom: "20px" }}>
+                <label
+                  htmlFor="dob"
+                  style={{ display: "block", marginBottom: "5px" }}
+                >
+                  Date of Birth:
+                </label>
+                <input
+                  type="date"
+                  id="dob"
+                  name="dob"
+                  value={formData.dob}
+                  onChange={handleChange}
+                  style={{
+                    width: "100%",
+                    padding: "8px",
+                    borderRadius: "4px",
+                    border: "1px solid #ccc",
+                  }}
+                  required
+                />
+              </div>
+
               <div>
                 <button
                   type="submit"
