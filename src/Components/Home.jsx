@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 function Home() {
   const [clicked, setClicked] = useState(false);
+  // const modalRef = useRef(null); 
 
   const handleButton = () => {
     setClicked(!clicked);
@@ -46,6 +47,29 @@ function Home() {
     // //  setModalIsOpen(false);
   };
 
+
+
+
+  // useEffect(() => {
+  //   const handleOutsideClick = (event) => {
+  //     if (modalRef.current && !modalRef.current.contains(event.target)) {
+  //       setClicked(false); // Close modal if clicked outside
+  //     }
+  //   };
+
+  //   // Add event listener when modal is open
+  //   if (clicked) {
+  //     document.addEventListener("mousedown", handleOutsideClick);
+  //   } else {
+  //     document.removeEventListener("mousedown", handleOutsideClick);
+  //   }
+
+  //   // Clean up the event listener when the component unmounts or modal is closed
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleOutsideClick);
+  //   };
+  // }, [clicked]);
+
   return (
     <div>
       <h1>User Details Modal</h1>
@@ -55,7 +79,7 @@ function Home() {
         <div className="modal">
           <div className="modal-content">
             <h2>Enter User Details</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name">Name:</label>
                 <input
@@ -117,7 +141,7 @@ function Home() {
                 <button
                   type="submit"
                   className="submit-button"
-                  onClick={handleSubmit}
+                  // onClick={handleSubmit}
                 >
                   Submit
                 </button>
