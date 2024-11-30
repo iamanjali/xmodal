@@ -7,6 +7,45 @@ function Home() {
     setClicked(!clicked);
   };
 
+  const [formData, setFormData] = useState({
+        username: "",
+        email: "",
+        phone: "",
+        dob: "",
+      });
+
+      const handleChange = (e) => {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+          };
+
+          const handleSubmit = (e) => {
+                e.preventDefault();
+                const { username, email, phone, dob } = formData;
+            
+                // Validation
+                if (!username || !email || !phone || !dob) {
+                  alert("All fields are required.");
+                  return;
+                }
+            
+                if (!/^\d{10}$/.test(phone)) {
+                  alert("Invalid phone number. Please enter a 10-digit phone number.");
+                  return;
+                }
+            
+                const currentDate = new Date();
+                const enteredDate = new Date(dob);
+            
+                if (enteredDate > currentDate) {
+                  alert("Invalid date of birth. Please select a valid past date.");
+                  return;
+                }
+            
+                // If all validations pass
+                alert("Form submitted successfully!");
+              //  setModalIsOpen(false);
+              };
+
   return (
     <div>
       <h1>User Details Modal</h1>
@@ -16,18 +55,18 @@ function Home() {
         <div className="modal">
           <div className="modal-content">
             <h2>Enter User Details</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name">Name:</label>
-                <input type="text" id="name" name="name" required />
+                <input type="text" id="name" name="name" onChange={handleChange} required />
               </div>
               <div>
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" required />
+                <input type="email" id="email" name="email" onChange={handleChange} required />
               </div>
               <div>
                 <label htmlFor="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required />
+                <input type="tel" id="phone" name="phone" onChange={handleChange} required />
               </div>
               <div>
                 <button type="submit">Submit</button>
